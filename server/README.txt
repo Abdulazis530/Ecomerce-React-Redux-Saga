@@ -1,0 +1,2 @@
+title: DataTypes.STRING,
+   node_modules/.bin/sequelize model:create --name Products --attributes "title:string, rate:integer,description:text,price:integer,brand:string,detail_product:text,image:string,vote:integer,capacities:integer"

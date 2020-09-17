@@ -27,27 +27,9 @@ module.exports = {
         type: Sequelize.TEXT
       },
       image: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
-      },
-      testimonials: {
-        type: Sequelize.ARRAY(Sequelize.JSON)
+        type: Sequelize.STRING
       },
       vote: {
-        type: Sequelize.INTEGER
-      },
-      sold: {
-        type: Sequelize.INTEGER
-      },
-      color: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
-      },
-      stock: {
-        type: Sequelize.INTEGER
-      },
-      capacities: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
-      },
-      stock: {
         type: Sequelize.INTEGER
       },
       createdAt: {

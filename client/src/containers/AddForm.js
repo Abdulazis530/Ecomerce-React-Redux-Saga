@@ -4,9 +4,18 @@ import React from 'react'
 
 
 export default class AddForm extends React.Component {
-    super(props) {
-
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            title: "",
+            rate: "",
+            description: "",
+            price: "",
+            brand: "",
+            detail_product: "",
+            image: "",
+            brand: "",
+        }
     }
 
     render() {
@@ -27,6 +36,7 @@ export default class AddForm extends React.Component {
                                             type="text"
                                             placeholder="Title"
                                             id="inputEmail"
+                                            name="title"
                                             required
                                         />
                                     </div>
@@ -34,22 +44,23 @@ export default class AddForm extends React.Component {
                                     <div class="my-3 w-75">
 
                                         <div class="form-group">
-                                            <label className="text-white font-weight-bold" for="exampleFormControlSelect1">Rate</label>
-                                            <select class="form-control form-control-lg" id="exampleFormControlSelect1">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                            <label className="text-white font-weight-bold" forHtml="rate">Rate</label>
+                                            <select class="form-control form-control-lg" name="rate" id="rate">
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                                <option value='5'>5</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="my-3 w-75">
-                                        <label for="inputPassword" class="text-white font-weight-bold">Description</label>
+                                        <label forhtml="inputPassword" class="text-white font-weight-bold">Description</label>
                                         <textarea
                                             class="form-control form-control-lg"
-                                            type="Password"
+                                            id="inputPassword"
+                                            name='description'
                                             placeholder="Description"
                                             required
                                         />
@@ -60,6 +71,8 @@ export default class AddForm extends React.Component {
                                         <input
                                             class="form-control form-control-lg"
                                             type="number"
+                                            name="price"
+                                            id="price"
                                             placeholder="Price"
                                             required
                                             min="1" step="any"
@@ -72,28 +85,33 @@ export default class AddForm extends React.Component {
                                             class="form-control form-control-lg"
                                             type="text"
                                             placeholder="Brand"
+                                            name="brand"
                                             required
-                                            min="1" step="any"                                        />
+                                            id="brand"
+                                            min="1" step="any" />
                                     </div>
 
                                     <div class="my-3  w-75">
-                                        <label for="inputPassword" class="text-white font-weight-bold">Description</label>
+                                        <label forHtml="detailProduct" class="text-white font-weight-bold">Detail Product</label>
                                         <textarea
                                             class="form-control form-control-lg"
                                             type="Password"
-                                            placeholder="Description"
+                                            placeholder="Detail Product"
+                                            name="detailProduct"
                                             required
                                             rows="5"
+                                            id="detailProduct"
                                         />
                                     </div>
                                     <div class="mt-3 mb-5 w-75">
-                                        <label forHTML="brand" class="text-white font-weight-bold">Brand</label>
+                                        <label forHTML="image" class="text-white font-weight-bold">Image</label>
                                         <input
                                             class="form-control form-control-lg"
                                             type="file"
-                                            placeholder="Brand"
+                                            name="image"
+                                            placeholder="Image"
                                             required
-                                            min="1" step="any"                                        />
+                                            min="1" step="any" />
                                     </div>
                                 </div>
 
@@ -102,7 +120,7 @@ export default class AddForm extends React.Component {
                                     <button type="submit" class="btn-success btn btn-lg p-2 mx-1 mb-2">Login</button>
                                     <button type="submit" class="btn-warning btn btn-lg p-2 mx-1 mb-2">Cancel</button>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
