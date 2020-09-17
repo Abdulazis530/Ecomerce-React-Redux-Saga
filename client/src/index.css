@@ -18,11 +18,12 @@ h6 {
 }
 
 /* this is to handle image picture in this challenge i dont do anything to image either at the client or server side*/
-.img-custom{
+.img-custom {
   width: 200px;
   height: 200px;
   object-fit: cover;
 }
+
 #title {
   background-color: #ff4c68;
   color: #fff;
@@ -40,7 +41,7 @@ h6 {
   background-color: #ff4c68;
   color: #fff;
   box-shadow: 0px 3px 5px rgba(10, 10, 10, 0.7);
-  border-radius:0px 0px 10px 10px
+  border-radius: 0px 0px 10px 10px
 }
 
 .navbar {
@@ -63,7 +64,8 @@ h6 {
   font-family: "Montserrat-Light";
 }
 
-.add-button,.btn {
+.add-button,
+.btn {
   margin: 5% 3% 5% 0;
 }
 
@@ -82,19 +84,22 @@ h6 {
   background-color: red;
 }
 
-.card{
-  border-radius:20px;
+.card-custom {
+  border-radius: 20px;
   box-shadow: 0px 2px 5px rgba(10, 10, 10, 0.7);
   transition: transform 0.2s;
 }
 
-.card:hover{
-  border-radius:20px;
+.card-custom:hover {
+  border-radius: 20px;
   transform: scale(1.05);
-
 }
 
+.card {
+  border: none;
+  box-shadow: 0px 2px 5px rgba(10, 10, 10, 0.7);
 
+}
 
 /* Navbar Media Query for Responsive */
 
@@ -108,12 +113,14 @@ h6 {
     position: static;
     transform: rotate(0);
   }
-  .img-custom{
+
+  .img-custom {
     width: 150px;
     height: 150px;
     object-fit: scale-down;
   }
-  .card-text{
+
+  .card-text {
     font-size: 12px;
   }
 }
@@ -126,10 +133,32 @@ h6 {
     right: 5%;
 
   }
-  .img-custom{
+
+  .img-custom {
     width: 200px;
     height: 200px;
     object-fit: scale-down;
   }
+
+}
+
+
+.flexCustom {
+  transition: transform 0.2s;
+  font-size: 1.5em;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+.flexCustom:hover {
+  transform: scale(1.02);
+}
+
+.card-header-custom {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 20, 0.7);
+ color: white;
+ font-weight: bold;
 
 }

@@ -8,7 +8,7 @@ export default class FlexItemProduct extends React.Component {
 
     render() {
         return (
-            <div className="card col-10 col-md-3 mx-3 my-3">
+            <div className="card col-10 col-md-3 mx-3 my-3 card-custom">
                 <img className=" card-img-top rounded mx-auto d-block img-custom" src={iphone} alt="Card image cap" />
                 <div className=" card-body ">
                     <h3 className="card-title font-weight-bold">Card title</h3>

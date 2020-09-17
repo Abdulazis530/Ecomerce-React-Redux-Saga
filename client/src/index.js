@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas/chat'
+import AddForm from './containers/AddForm';
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -23,8 +24,9 @@ sagaMiddleware.run(rootSaga)
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <Navbar/>
-    <FlexBoxProducts/>
+      <Navbar />
+      <AddForm />
+      <FlexBoxProducts />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
