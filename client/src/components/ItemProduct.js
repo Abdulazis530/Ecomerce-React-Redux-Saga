@@ -3,7 +3,9 @@ import history from 'history'
 import iphone from '../assets/phones.png'
 import iphone2 from '../assets/phones2.png'
 import StarRatings from 'react-star-ratings';
-export default class FlexItemProduct extends React.Component {
+
+
+export default class ItemProduct extends React.Component {
 
 
     render() {

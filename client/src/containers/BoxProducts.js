@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react'
-import FlexItemProduct from '../components/FlexItemProduct'
+import FlexItemProduct from '../components/ItemProduct'
 
-export default class FlexBoxProducts extends Component {
+export default class BoxProducts extends Component {
     super(props) {
 
 

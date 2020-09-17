@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import TodoBox from './components/TodoBox'
-import Navbar from './components/Navbar'
-import FlexBoxProducts from './containers/FlexBoxProducts'
+import Home from './Home.'
+import AddForm from './containers/AddForm'
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas/chat'
-import AddForm from './containers/AddForm';
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -24,9 +24,16 @@ sagaMiddleware.run(rootSaga)
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Navbar />
-      <AddForm />
-      <FlexBoxProducts />
+      <Router>
+        <Switch>
+          <route exact path="/">
+            <Home />
+          </route>
+          <route  path="/add">
+            <AddForm />
+          </route>
+        </Switch>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

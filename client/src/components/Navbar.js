@@ -31,7 +31,7 @@ export default function Navbar(props) {
 
                     <div className="col-lg-6">
                         <h1 className="big-heading">Belanja hape baru hanya di TokoHape, Gratis ongkir seumur hidup.</h1>
-                        <button type="button" className="mt-5 btn btn-dark btn-lg c"><i className="fas fa-cart-plus"></i> Add Item</button>
+                        <Link to='/add' className="mt-5 btn btn-dark btn-lg c"><i className="fas fa-cart-plus"></i> Add Item</Link>
 
                     </div>
 

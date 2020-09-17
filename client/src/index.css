@@ -64,8 +64,7 @@ h6 {
   font-family: "Montserrat-Light";
 }
 
-.add-button,
-.btn {
+.add-button{
   margin: 5% 3% 5% 0;
 }
 
@@ -81,7 +80,7 @@ h6 {
 .item {
   width: 10%;
   height: 40vh;
-  background-color: red;
+
 }
 
 .card-custom {
@@ -127,7 +126,24 @@ h6 {
 
 @media only screen and (min-width : 1400px) {
   .title-image {
-    width: 45%;
+    width: 50%;
+    transform: rotate(25deg);
+    position: absolute;
+    right: 5%;
+
+  }
+
+  .img-custom {
+    width: 200px;
+    height: 200px;
+    object-fit: scale-down;
+  }
+
+}
+
+@media only screen and (min-width : 1900px) {
+  .title-image {
+    width: 39%;
     transform: rotate(25deg);
     position: absolute;
     right: 5%;
@@ -146,7 +162,8 @@ h6 {
 .flexCustom {
   transition: transform 0.2s;
   font-size: 1.5em;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: #ff4c68;
+
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
   border-radius: 5px;
 }
@@ -157,7 +174,8 @@ h6 {
 
 .card-header-custom {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.6);
-  background-color: rgba(0, 0, 20, 0.7);
+  background-color: #ff4c68;
+ 
  color: white;
  font-weight: bold;
 
