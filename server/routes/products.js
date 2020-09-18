@@ -45,10 +45,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { title, rate, description, price, brand, detail_product, color, stock, capacities } = req.body
+        console.log(req.body)
+        console.log(req.files)
+        const { title, rate, description, price, brand, detailProduct } = req.body
         
         const file = req.files.image
-        console.log(file)
+   
         const fileName = file.name.toLowerCase().replace("", Date.now()).split(' ').join('-')
         
         await file.mv(path.join(__dirname, "..", "public", "images", fileName))
@@ -59,10 +61,11 @@ router.post('/', async (req, res) => {
             description,
             price,
             brand,
-            detail_product,
+            detail_product:detailProduct,
             image:`${API_SERVER}/images/${fileName}`,
-            stock
+            
         })
+        console.log('ini product',product)
         res.json(product);
     } catch (error) {
         console.log(error)

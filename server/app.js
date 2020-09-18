@@ -19,6 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(fileUpload({ limits: { fileSize: 4 * 1024 * 1024 } }))
 
-app.use('/products', productsRouter);
+app.use('/api/products', productsRouter);
 
 module.exports = app;

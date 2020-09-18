@@ -34,6 +34,9 @@ h6 {
   padding: 3% 15% 7%;
 }
 
+.container-fluid {
+  padding: 3% 15% 7%;
+}
 
 /* Sections Navbar*/
 
@@ -179,4 +182,12 @@ h6 {
  color: white;
  font-weight: bold;
 
+}
+
+.white-section {
+  background-color: #fff;
+}
+
+.social-icon {
+  margin: 20px 10px;
 }

@@ -10,6 +10,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas/chat'
 
@@ -24,14 +25,10 @@ sagaMiddleware.run(rootSaga)
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <Router >
         <Switch>
-          <route exact path="/">
-            <Home />
-          </route>
-          <route  path="/add">
-            <AddForm />
-          </route>
+          <Route exact path="/"   component={Home}/>
+          <Route  path="/add" component={AddForm}/>
         </Switch>
       </Router>
     </Provider>

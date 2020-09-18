@@ -1,6 +1,7 @@
 import { all, takeEvery, put, call } from 'redux-saga/effects';
 import * as actions from '../actions';
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const API_URL = 'http://localhost:3001/api/'
 
@@ -23,6 +24,12 @@ const add = async (path, params) =>
         .catch(err => {
             throw err
         });
+const add2 = async (path, params) =>
+    await request.post(path, params)
+        .then(response => response.data)
+        .catch(err => {
+            throw err
+        });
 
 const update = async (path, params) =>
     await request.put(path, params)
@@ -39,7 +46,7 @@ const remove = async (path) =>
         });
 
 
-const PATH = 'chats';
+const PATH = 'products';
 
 // load
 function* loadChat() {
@@ -64,6 +71,44 @@ function* postChat(payload) {
         console.log(error);
         yield put(actions.postChatFailure(id));
     }
+}
+function* postAdds(payload) {
+    const { newData, history } = payload;
+    const formData = new FormData()
+    for (const key in newData) {
+        formData.append(key, newData[key])
+    }
+    try {
+
+        const data = yield call(add2, PATH, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'New Adds added successfully!',
+            showConfirmButton: false,
+            timer: 1200
+        }).then(() => history.push('/'))
+
+    } catch (error) {
+        console.log('here')
+        console.log(error);
+        Swal.fire({
+            icon: 'warning',
+            title: "Network connection trouble!",
+            text: "Call administator to fix the issue",
+            type: "warning",
+            buttons: true,
+            dangerMode: true,
+            timer: 1500
+        })
+        yield put(actions.addAddsFailure())
+
+    }
+
 }
 
 function* deleteChat(payload) {
@@ -94,6 +139,7 @@ export default function* rootSaga() {
     yield all([
         takeEvery('LOAD_CHATS', loadChat),
         takeEvery('ADD_CHAT', postChat),
+        takeEvery('ADD_NEW_ADDS', postAdds),
         takeEvery('REMOVE_CHAT', deleteChat),
         takeEvery('RESEND_CHAT', resendChat),
     ]);

@@ -24,8 +24,13 @@ export const postChatSuccess = (chats) => ({
     chats
 })
 
+
 export const postChatFailure = (id) => ({
     type: 'POST_CHAT_FAILURE', id
+})
+
+export const addAddsFailure = () => ({
+    type: 'ADD_NEW_ADDS_FAILURE'
 })
 
 export const postChatRedux = (id, name, message) => ({
@@ -36,7 +41,9 @@ export const postChatRedux = (id, name, message) => ({
 export const postChat = (name, message) => ({
     type: 'ADD_CHAT', name, message
 })
-
+export const postAdds = (newData, history) => ({
+    type: 'ADD_NEW_ADDS', newData,history
+})
 // start delete chat data
 
 export const deleteChatRedux = (id) => ({

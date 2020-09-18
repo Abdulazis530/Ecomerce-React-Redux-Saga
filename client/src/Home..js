@@ -1,15 +1,16 @@
-import React from 'react';
-
+import React, { Fragment } from 'react';
 import Navbar from './components/Navbar'
 import BoxProducts from './containers/BoxProducts'
+import Footer from './components/Footer'
 import './App.css';
 
 function App() {
   return (
-    <partial>
+    <Fragment>
       <Navbar />
       <BoxProducts />
-    </partial>
+      <Footer/>
+    </Fragment>
   );
 }
 
