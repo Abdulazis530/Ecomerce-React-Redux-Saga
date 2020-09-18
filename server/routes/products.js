@@ -5,10 +5,10 @@ const path = require('path');
 const API_SERVER="http://localhost:3001";
 /* GET products listing. */
 router.get('/', async (req, res) => {
-
+        console.log('here')
     try {
         const page = req.query.page || 1
-        const limit = req.query.limit || 5
+        const limit = req.query.limit || 3
         const offset = page * limit - limit
 
         const dataProducts = await models.Products.findAndCountAll({
@@ -45,19 +45,15 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        console.log(req.body)
-        console.log(req.files)
         const { title, rate, description, price, brand, detailProduct } = req.body
         
         const file = req.files.image
-   
         const fileName = file.name.toLowerCase().replace("", Date.now()).split(' ').join('-')
-        
         await file.mv(path.join(__dirname, "..", "public", "images", fileName))
 
         const product = await models.Products.create({ 
             title,
-            rate,
+            rate:Number(rate),
             description,
             price,
             brand,
@@ -65,7 +61,7 @@ router.post('/', async (req, res) => {
             image:`${API_SERVER}/images/${fileName}`,
             
         })
-        console.log('ini product',product)
+
         res.json(product);
     } catch (error) {
         console.log(error)

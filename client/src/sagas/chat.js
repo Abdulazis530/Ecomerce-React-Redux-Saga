@@ -16,7 +16,12 @@ const read = async (path) =>
         .catch(err => {
             throw err
         });
-
+const read2 = async (path) =>
+    await request.get(path)
+        .then(response => response.data)
+        .catch(err => {
+            throw err
+        });
 
 const add = async (path, params) =>
     await request.post(path, params)
@@ -50,13 +55,26 @@ const PATH = 'products';
 
 // load
 function* loadChat() {
-
+   
     try {
-        const data = yield call(read, PATH);
+        const data = yield call(read2, PATH);
         yield put(actions.loadChatSuccess(data));
     } catch (error) {
         console.log(error);
         yield put(actions.loadChatFailure());
+    }
+}
+function* loadAdds(payload) {
+    const {limit,page}=payload
+    const QUERY_PATH=`${PATH}?limit=${limit}&page=${page}`
+    try {
+        const data = yield call(read2, QUERY_PATH);
+        console.log('load saga')
+        console.log(data)
+        // yield put(actions.loadChatSuccess(data));
+    } catch (error) {
+        console.log(error);
+        // yield put(actions.loadChatFailure());
     }
 }
 
@@ -80,7 +98,7 @@ function* postAdds(payload) {
     }
     try {
 
-        const data = yield call(add2, PATH, formData, {
+        yield call(add2, PATH, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -138,6 +156,7 @@ function* resendChat(payload) {
 export default function* rootSaga() {
     yield all([
         takeEvery('LOAD_CHATS', loadChat),
+        takeEvery('LOAD_ADDS', loadAdds),
         takeEvery('ADD_CHAT', postChat),
         takeEvery('ADD_NEW_ADDS', postAdds),
         takeEvery('REMOVE_CHAT', deleteChat),

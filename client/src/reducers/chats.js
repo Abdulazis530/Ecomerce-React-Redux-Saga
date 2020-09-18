@@ -16,7 +16,6 @@ const chats = (state = [], action) => {
                     sent: true
                 }
             ]
-
         case 'DELETE_CHAT':
             return state.filter((item) => item.id !== action.id)
 

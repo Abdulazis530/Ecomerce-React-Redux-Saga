@@ -14,6 +14,10 @@ export const loadChatFailure = () => ({
 export const loadChat = () => ({
     type: 'LOAD_CHATS'
 })
+export const loadAdds = (page, limit) => ({
+    type: 'LOAD_ADDS', page, limit
+})
+
 
 // end load chat data
 
@@ -42,7 +46,7 @@ export const postChat = (name, message) => ({
     type: 'ADD_CHAT', name, message
 })
 export const postAdds = (newData, history) => ({
-    type: 'ADD_NEW_ADDS', newData,history
+    type: 'ADD_NEW_ADDS', newData, history
 })
 // start delete chat data
 
@@ -73,4 +77,4 @@ export const resendChatSuccess = (id) => ({
 
 export const resendChat = (id, name, message) => ({
     type: 'RESEND_CHAT', id, name, message
-  })
+})
