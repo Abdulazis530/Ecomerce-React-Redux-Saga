@@ -71,10 +71,10 @@ function* loadAdds(payload) {
         const data = yield call(read2, QUERY_PATH);
         console.log('load saga')
         console.log(data)
-        // yield put(actions.loadChatSuccess(data));
+        yield put(actions.loadAddsSuccess(data));
     } catch (error) {
         console.log(error);
-        // yield put(actions.loadChatFailure());
+        // yield put(actions.loadAddsFailure());
     }
 }
 

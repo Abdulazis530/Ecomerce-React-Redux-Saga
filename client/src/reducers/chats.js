@@ -1,11 +1,7 @@
-const chats = (state = [], action) => {
+const adds = (state = {totalPages:0,data:[]}, action) => {
     switch (action.type) {
-        case 'LOAD_CHAT_SUCCESS':
-            return action.chats.map((item) => {
-                item.sent = true;
-                return item
-            })
-
+        case 'LOAD_ADDS_SUCCESS':
+            return action.adds
         case 'POST_CHAT':
             return [
                 ...state,
@@ -30,4 +26,4 @@ const chats = (state = [], action) => {
     }
 }
 
-export default chats
+export default adds

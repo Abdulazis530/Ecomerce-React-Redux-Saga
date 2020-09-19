@@ -11,6 +11,16 @@ export const loadChatFailure = () => ({
     type: 'LOAD_CHAT_FAILURE'
 })
 
+
+export const loadAddsSuccess = (adds) => ({
+    type: 'LOAD_ADDS_SUCCESS',
+    adds
+}
+)
+export const loadAddsFailure = () => ({
+    type: 'LOAD_ADDS_FAILURE'
+})
+
 export const loadChat = () => ({
     type: 'LOAD_CHATS'
 })
