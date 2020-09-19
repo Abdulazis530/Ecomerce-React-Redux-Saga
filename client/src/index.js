@@ -29,6 +29,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/"   component={Home}/>
           <Route  path="/add" component={AddForm}/>
+          <Route  path="/detail/:id" component={AddForm}/>
         </Switch>
       </Router>
     </Provider>

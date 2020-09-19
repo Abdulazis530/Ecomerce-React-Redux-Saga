@@ -2,33 +2,22 @@
 
 
 // start load chat data
-export const loadChatSuccess = (chats) => ({
-    type: 'LOAD_CHAT_SUCCESS',
-    chats
-})
-
-export const loadChatFailure = () => ({
-    type: 'LOAD_CHAT_FAILURE'
-})
-
 
 export const loadAddsSuccess = (adds) => ({
     type: 'LOAD_ADDS_SUCCESS',
     adds
-}
-)
+})
 export const loadAddsFailure = () => ({
     type: 'LOAD_ADDS_FAILURE'
 })
 
-export const loadChat = () => ({
-    type: 'LOAD_CHATS'
-})
 export const loadAdds = (page, limit) => ({
     type: 'LOAD_ADDS', page, limit
 })
 
-
+export const resetAdds=()=>({
+    type:'RESET_ADDS'
+})
 // end load chat data
 
 // start post chat data

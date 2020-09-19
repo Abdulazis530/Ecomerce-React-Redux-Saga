@@ -54,27 +54,25 @@ const remove = async (path) =>
 const PATH = 'products';
 
 // load
-function* loadChat() {
-   
-    try {
-        const data = yield call(read2, PATH);
-        yield put(actions.loadChatSuccess(data));
-    } catch (error) {
-        console.log(error);
-        yield put(actions.loadChatFailure());
-    }
-}
+
 function* loadAdds(payload) {
     const {limit,page}=payload
     const QUERY_PATH=`${PATH}?limit=${limit}&page=${page}`
     try {
-        const data = yield call(read2, QUERY_PATH);
-        console.log('load saga')
-        console.log(data)
+        const data = yield call(read2, QUERY_PATH)
         yield put(actions.loadAddsSuccess(data));
     } catch (error) {
         console.log(error);
-        // yield put(actions.loadAddsFailure());
+        Swal.fire({
+            icon: 'warning',
+            title: "Network connection trouble!",
+            text: "Call administator to fix the issue",
+            type: "warning",
+            buttons: true,
+            dangerMode: true,
+            timer: 1500
+        })
+        yield put(actions.loadAddsFailure());
     }
 }
 
@@ -87,6 +85,7 @@ function* postChat(payload) {
         yield put(actions.postChatSuccess(data));
     } catch (error) {
         console.log(error);
+        
         yield put(actions.postChatFailure(id));
     }
 }
@@ -155,7 +154,7 @@ function* resendChat(payload) {
 
 export default function* rootSaga() {
     yield all([
-        takeEvery('LOAD_CHATS', loadChat),
+
         takeEvery('LOAD_ADDS', loadAdds),
         takeEvery('ADD_CHAT', postChat),
         takeEvery('ADD_NEW_ADDS', postAdds),

@@ -3,12 +3,14 @@ import Navbar from './components/Navbar'
 import BoxProducts from './containers/BoxProducts'
 import Footer from './components/Footer'
 import './App.css';
+import DetailAdds from './containers/DetailAdds';
 
 function App() {
   return (
-    <Fragment>
+    <Fragment >
       <Navbar />
       <BoxProducts />
+      <DetailAdds/>
       <Footer/>
     </Fragment>
   );
