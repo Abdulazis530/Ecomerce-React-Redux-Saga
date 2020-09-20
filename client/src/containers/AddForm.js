@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Footer from '../components/Footer'
-import { postChat,postAdds } from '../actions'
+import {postAdds } from '../actions'
 import React from 'react'
 import { connect } from 'react-redux';
 

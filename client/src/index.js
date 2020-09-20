@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TodoBox from './components/TodoBox'
 import Home from './Home.'
 import AddForm from './containers/AddForm'
+import DetailAdds from './containers/DetailAdds'
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -29,7 +29,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/"   component={Home}/>
           <Route  path="/add" component={AddForm}/>
-          <Route  path="/detail/:id" component={AddForm}/>
+          <Route  path="/detail/:id" component={DetailAdds}/>
         </Switch>
       </Router>
     </Provider>

@@ -194,3 +194,19 @@ h6 {
 
 
 /* detai product */
+.img-custom2 {
+  width: 400px;
+  height: 400px;
+  object-fit: scale-down;
+}
+
+.test-text {
+  word-wrap: break-word;
+  text-align:left;
+  font-size: 1.3em;
+
+}
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+}

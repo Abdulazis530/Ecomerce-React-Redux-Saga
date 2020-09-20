@@ -10,7 +10,6 @@ function App() {
     <Fragment >
       <Navbar />
       <BoxProducts />
-      <DetailAdds/>
       <Footer/>
     </Fragment>
   );
