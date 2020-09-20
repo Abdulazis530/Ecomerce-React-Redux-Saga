@@ -73,6 +73,8 @@ router.post('/', async (req, res) => {
 
 
 router.put('/:id', async (req, res) => {
+    console.log('here')
+    console.log(req.body.vote)
     try {
         const product = await models.Products.update({
             vote: req.body.vote,

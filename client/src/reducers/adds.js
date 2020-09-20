@@ -10,7 +10,6 @@ const adds = (state = { totalPage: 0, data: [] }, action) => {
         case 'RESET_ADDS':
             return { totalPage: 0, data: [] }
 
-        case 'ADD_NEW_ADDS_FAILURE':
         default:
             return state
     }

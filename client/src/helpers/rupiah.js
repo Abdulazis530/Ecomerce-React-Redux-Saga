@@ -1,4 +1,5 @@
 export default function numToRupiah(num){
+    console.log(num)
     const stringedNumber = num.toString()
     let rupiah = ''
     //reverse the string

@@ -10,13 +10,14 @@ const request = axios.create({
     timeout: 1000
 });
 
+
 const read = async (path) =>
     await request.get(path)
         .then(response => response.data)
         .catch(err => {
             throw err
         });
-const read2 = async (path) =>
+const readDetailAdds = async (path) =>
     await request.get(path)
         .then(response => response.data)
         .catch(err => {
@@ -24,12 +25,6 @@ const read2 = async (path) =>
         });
 
 const add = async (path, params) =>
-    await request.post(path, params)
-        .then(response => response.data)
-        .catch(err => {
-            throw err
-        });
-const add2 = async (path, params) =>
     await request.post(path, params)
         .then(response => response.data)
         .catch(err => {
@@ -43,12 +38,7 @@ const update = async (path, params) =>
             throw err
         });
 
-const remove = async (path) =>
-    await request.delete(path)
-        .then(response => response.data)
-        .catch(err => {
-            throw err
-        });
+
 
 
 const PATH = 'adds';
@@ -56,10 +46,10 @@ const PATH = 'adds';
 // load
 
 function* loadAdds(payload) {
-    const {limit,page}=payload
-    const QUERY_PATH=`${PATH}?limit=${limit}&page=${page}`
+    const { limit, page } = payload
+    const QUERY_PATH = `${PATH}?limit=${limit}&page=${page}`
     try {
-        const data = yield call(read2, QUERY_PATH)
+        const data = yield call(read, QUERY_PATH)
         yield put(actions.loadAddsSuccess(data));
     } catch (error) {
         console.log(error);
@@ -72,23 +62,31 @@ function* loadAdds(payload) {
             dangerMode: true,
             timer: 1500
         })
-        yield put(actions.loadAddsFailure());
+
+    }
+}
+function* loadAddsDetail(payload) {
+    const { id } = payload
+    const QUERY_PATH = `${PATH}/${id}`
+    try {
+        const data = yield call(readDetailAdds, QUERY_PATH)
+        yield put(actions.loadDetailAddsSuccess(data));
+    } catch (error) {
+        console.log(error);
+        Swal.fire({
+            icon: 'warning',
+            title: "Network connection trouble!",
+            text: "Call administator to fix the issue",
+            type: "warning",
+            buttons: true,
+            dangerMode: true,
+            timer: 1500
+        })
+
     }
 }
 
-function* postChat(payload) {
-    const { name, message } = payload;
-    let id = Date.now();
-    yield put(actions.postChatRedux(id, name, message))
-    try {
-        const data = yield call(add, PATH, { id, name, message });
-        yield put(actions.postChatSuccess(data));
-    } catch (error) {
-        console.log(error);
-        
-        yield put(actions.postChatFailure(id));
-    }
-}
+
 function* postAdds(payload) {
     const { newData, history } = payload;
     const formData = new FormData()
@@ -97,7 +95,7 @@ function* postAdds(payload) {
     }
     try {
 
-        yield call(add2, PATH, formData, {
+        yield call(add, PATH, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -111,8 +109,6 @@ function* postAdds(payload) {
         }).then(() => history.push('/'))
 
     } catch (error) {
-        console.log('here')
-        console.log(error);
         Swal.fire({
             icon: 'warning',
             title: "Network connection trouble!",
@@ -122,44 +118,44 @@ function* postAdds(payload) {
             dangerMode: true,
             timer: 1500
         })
-        yield put(actions.addAddsFailure())
+
 
     }
 
 }
-
-function* deleteChat(payload) {
-    const { id } = payload;
-    yield put(actions.deleteChatRedux(id))
+function* updateAddsDetail(payload){
+    const {id,vote,history} =payload
+    console.log('updatae adss')
+    console.log(vote)
+    // const{updateData:{brand,}}
+    const QUERY_PATH = `${PATH}/${id}`
+    const result= yield call(update, QUERY_PATH,{vote})
     try {
-        const data = yield call(remove, `${PATH}/${id}`);
-        yield put(actions.deleteChatSuccess(data));
+        yield put(actions.resetDetailAdds())
+       console.log(result)
     } catch (error) {
-        console.log(error);
-        yield put(actions.deleteChatFailure(id));
+        console.log(error)
+        Swal.fire({
+            icon: 'warning',
+            title: "Something went Wrong!",
+            text: "Call administator to fix the issue",
+            type: "warning",
+            buttons: true,
+            dangerMode: true,
+            timer: 1500
+        }).then(()=>history.push(`/detail/${id}`))
     }
 }
 
-function* resendChat(payload) {
-    const { id, name, message } = payload;
-    try {
-        const data = yield call(add, PATH, { id, name, message });
-        yield put(actions.resendChatSuccess(id));
-    } catch (error) {
-        console.log(error);
-        yield put(actions.postChatFailure(id));
-    }
-}
 
 
 export default function* rootSaga() {
     yield all([
 
         takeEvery('LOAD_ADDS', loadAdds),
-        takeEvery('ADD_CHAT', postChat),
         takeEvery('ADD_NEW_ADDS', postAdds),
-        takeEvery('REMOVE_CHAT', deleteChat),
-        takeEvery('RESEND_CHAT', resendChat),
+        takeEvery('LOAD_DETAIL_ADDS', loadAddsDetail),
+        takeEvery('UPDATE_VOTE',updateAddsDetail)
     ]);
 }
 
