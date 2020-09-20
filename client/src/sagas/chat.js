@@ -51,7 +51,7 @@ const remove = async (path) =>
         });
 
 
-const PATH = 'products';
+const PATH = 'adds';
 
 // load
 

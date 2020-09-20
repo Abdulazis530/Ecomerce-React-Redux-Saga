@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react'
-import history from 'history'
-import iphone from '../assets/phones.png'
-import iphone2 from '../assets/phones2.png'
 import StarRatings from 'react-star-ratings';
+import numToRupiah from '../helpers/rupiah'
 import {
    Link,
    useRouteMatch
@@ -12,19 +10,7 @@ export default function ItemProduct (props ){
     let match = useRouteMatch()
 
     console.log(match)
-   const numToRupiah = (num) => {
-        const stringedNumber = num.toString()
-        let rupiah = ''
-        //reverse the string
-        let reversedStringNum = stringedNumber.split('').reverse().join('')
-        console.log(reversedStringNum)
-        for (let i = 0; i < reversedStringNum.length; i++) {
-
-            if (i % 3 === 0) rupiah += reversedStringNum.substr(i, 3) + '.'
-        }
-
-        return `Rp.${rupiah.split('').reverse().join('').slice(1)},-`
-    }
+  
 
    
         return (

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link, useParams, useRouteMatch } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown';
 import iphone from '../assets/iphone.png'
 import Swal from 'sweetalert2'
+import numToRupiah from '../helpers/rupiah'
+// import { connect } from 'react-redux'
+// import { loadAddsDetail,resetAddsDetail } from '../actions'
+
 
 export default class DetailAdds extends Component {
     constructor(props) {
@@ -11,6 +14,15 @@ export default class DetailAdds extends Component {
             voted: false,
             voteNumber: 5000
         }
+    }
+    componentDidMount() {
+        console.log('didMount in detail adds')
+
+        const detailId = Number(this.props.match.params.id)
+        console.log(detailId)
+    }
+    componentWillUnmount() {
+
     }
 
     handleVote = (e) => {
@@ -25,15 +37,15 @@ export default class DetailAdds extends Component {
                 voteNumber: state.voteNumber + 1
             })
             )
-        }else{
+        } else {
             this.setState(state => ({
                 voteNumber: state.voteNumber - 1
             }))
         }
     }
-    handleBackToHome=(e)=>{
+    handleBackToHome = (e) => {
         e.preventDefault()
-        if(e.target.name === 'addCart'){
+        if (e.target.name === 'addCart') {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -41,12 +53,12 @@ export default class DetailAdds extends Component {
                 showConfirmButton: false,
                 timer: 1200
             }).then(() => this.props.history.push('/'))
-        }else{
+        } else {
             this.props.history.push('/')
         }
     }
     render() {
-        const testMarkdown= `# heading 
+        const testMarkdown = `# heading 
         Ipsum is simply dummy text of the printing
         and typesetting industry. Lorem Ipsum has been
         the industry's standard dummy text ever since the 1500s,
@@ -57,6 +69,7 @@ export default class DetailAdds extends Component {
               release of Letraset sheets containing Lorem Ipsum passages, and 
               more recently with desktop publishing software like Aldus PageMaker
                including versions of Lorem Ipsum.`
+        const testPrice = 25000
         return (<div className='container'>
 
             <div className="card">
@@ -71,7 +84,7 @@ export default class DetailAdds extends Component {
                             <p style={{ color: "#337ab7", display: 'inline' }} className='text-left'>Samsung </p>
                             <small style={{ color: "#337ab7" }}>({this.state.voteNumber} votes)</small>
                             <h6 className="mt-2"><small>PRICE</small></h6>
-                            <h3>Rp.35.000.000,00</h3>
+                            <h3>{numToRupiah(testPrice)}</h3>
                         </div>
 
 
@@ -86,12 +99,13 @@ export default class DetailAdds extends Component {
 
                         <div className='col-12 test-text' >
                             <h3 className="ml-5 h3">More Detail</h3>
-                            <p className='my-2 ml-5 mr-5'> 
+
                             <ReactMarkdown
-                                    source={testMarkdown}
-                                    escapeHtml={false}
-                                /> 
-                            </p>
+                                source={testMarkdown}
+                                escapeHtml={false}
+                                className='ml-5'
+                            />
+
                         </div>
                     </div>
 
@@ -115,3 +129,19 @@ export default class DetailAdds extends Component {
     }
 
 }
+
+// const mapStateToProps = (state) => ({
+//     vote: state.detailAdds.vote,
+
+// })
+
+// const mapDispatchToProps = (dispatch) => ({
+//     loadAddsDetail: (page, limit) => dispatch(loadAddsDetail(id)),
+//     resetAddsDetail: () => dispatch(resetAdds())
+
+// })
+
+// export default connect(
+//     null,
+//     mapDispatchToProps
+// )(DetailAdds)

@@ -34,6 +34,8 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+    console.log(req.params.id)
+    console.log('wkwkwkkwkw')
     try {
         const product = await models.Products.findByPk(req.params.id)
         res.json(product);
@@ -73,8 +75,8 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const product = await models.Products.update({
-            title: req.body.title,
-            complete: req.body.complete
+            vote: req.body.vote,
+
         }, {
             returning: true,
             where: {
