@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 import createSagaMiddleware from 'redux-saga'
-import rootSaga from './sagas/chat'
+import rootSaga from './sagas/adds'
 
 const sagaMiddleware = createSagaMiddleware()
 

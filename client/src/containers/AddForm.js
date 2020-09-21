@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import {postAdds } from '../actions'
 import React from 'react'
@@ -22,29 +22,22 @@ class AddForm extends React.Component {
     }
 
     handleChange = (e) => {
-
         if (e.target.name === 'image') {
             this.setState({ [e.target.name]: e.target.files[0] })
 
         } else {
             this.setState({ [e.target.name]: e.target.value })
-
         }
-        console.log(this.state)
-
     }
 
     handleSubmit = (e) => {
-  
         e.preventDefault();
         this.props.postAdds(this.state,this.props.history)
         
     }
 
     render() {
-
         return (
-
             <div >
                 <nav className="navbar navbar-expand-lg navbar-dark pb-3 mb-5" style={{ backgroundColor: "#ff4c68" }}>
                     <Link to='/' className="navbar-brand ml-5" >TokoHape.</Link>

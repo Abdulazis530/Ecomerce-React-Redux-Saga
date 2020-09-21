@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown';
 import Swal from 'sweetalert2'
 import { connect } from 'react-redux'
-import { loadDetailAdds, upvote, devote, resetDetailAdds, updateVote } from '../actions'
-
+import { Link } from 'react-router-dom'
+import { loadDetailAdds, upvote, devote, updateVote } from '../actions'
+import Footer from '../components/Footer'
 
 class DetailAdds extends Component {
     constructor(props) {
@@ -20,8 +21,8 @@ class DetailAdds extends Component {
     componentWillUnmount() {
         const detailId = Number(this.props.match.params.id)
         const vote = this.props.data.vote
-        const history=this.props.history
-        this.props.updateVote(detailId, vote,history)
+        const history = this.props.history
+        this.props.updateVote(detailId, vote, history)
 
     }
 
@@ -53,10 +54,29 @@ class DetailAdds extends Component {
     }
     render() {
         const { brand, title, detail_product, price, image, vote } = this.props.data
-        return (<div className='container'>
-
-            <div className="card">
-                <div className="card-header bg-danger">
+        return (
+        <div className='container'>
+            <nav className="navbar navbar-expand-lg navbar-dark pb-3 mb-5" style={{ backgroundColor: "#ff4c68" }}>
+                <Link to='/' className="navbar-brand ml-5" >TokoHape.</Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul className="navbar-nav ml-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" href="#footer">Contact</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#pricing">Pricing</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#cta">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div className="card mb-5">
+                <div className="card-header card-header-detail">
                     <h1 className='h1'>DETAIL PRODUCT</h1>
                 </div>
                 <div className='card-body'>
@@ -73,10 +93,9 @@ class DetailAdds extends Component {
 
                     </div>
                     <div className='row '>
-
                         <div className='col-12'>
-                            <h2></h2>
-                            <img className="card-img-top rounded mx-auto d-block img-custom2 mt-1" src={image} alt="Card image cap" />
+                         
+                            <img className="card-img-top rounded mx-auto d-block img-custom2 mt-1" src={image} alt={title} />
                         </div>
 
 
@@ -100,14 +119,11 @@ class DetailAdds extends Component {
                     <button type='button' className='btn btn-danger btn-lg mx-3' name='cancel' onClick={this.handleBackToHome}> <i className="fas fa-times mr-1"></i> Cancel</button>
                     {this.state.voted ? <button type='button' className='btn btn-warning btn-lg mx-3' name='devote' onClick={this.handleVote}> Devote</button> : <button type='button' className='btn btn-info btn-lg mx-3' name='vote' onClick={this.handleVote}>Vote</button>}
 
-
                 </div>
-
-
-
             </div>
-
-        </div>)
+            <Footer/>
+        </div>
+        )
 
     }
 
@@ -122,7 +138,7 @@ const mapDispatchToProps = (dispatch) => ({
     loadDetailAdds: (id) => dispatch(loadDetailAdds(id)),
     upvote: () => dispatch(upvote()),
     devote: () => dispatch(devote()),
-    updateVote: (id, vote,history) => dispatch(updateVote(id, vote,history))
+    updateVote: (id, vote, history) => dispatch(updateVote(id, vote, history))
 
 })
 

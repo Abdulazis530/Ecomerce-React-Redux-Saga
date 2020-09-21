@@ -1,27 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import iphone2 from '../assets/phones.png'
-export default function Navbar(props) {
+export default function Navbar() {
     return (
-
         <section className="colored-section " id="title">
 
             <div className="container-fluid">
                 <nav className="navbar navbar-expand-lg navbar-dark ">
-                    <a className="navbar-brand" href="">TokoHape.</a>
+                    <a className="navbar-brand" href="/#">TokoHape.</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <a className="nav-link" href="#footer">Contact</a>
+                                <a className="nav-link" href="/#">Contact</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#pricing">Pricing</a>
+                                <a className="nav-link" href="/#">Pricing</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#cta">Download</a>
+                                <a className="nav-link" href="/#">Download</a>
                             </li>
                         </ul>
                     </div>

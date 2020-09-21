@@ -39,7 +39,6 @@ h6 {
 }
 
 /* Sections Navbar*/
-
 .colored-section {
   background-color: #ff4c68;
   color: #fff;
@@ -104,7 +103,6 @@ h6 {
 }
 
 /* Navbar Media Query for Responsive */
-
 @media (max-width: 1028px) {
 
   #title {
@@ -206,7 +204,8 @@ h6 {
   font-size: 1.3em;
 
 }
-.vl {
-  border-left: 6px solid green;
-  height: 500px;
+
+.card-header-detail{
+  background-color: #ff4c68;
+  color: white;
 }

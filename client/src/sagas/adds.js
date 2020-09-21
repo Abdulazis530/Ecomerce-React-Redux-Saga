@@ -86,7 +86,7 @@ function* loadAddsDetail(payload) {
     }
 }
 
-
+//add
 function* postAdds(payload) {
     const { newData, history } = payload;
     const formData = new FormData()
@@ -109,6 +109,7 @@ function* postAdds(payload) {
         }).then(() => history.push('/'))
 
     } catch (error) {
+        console.log(error)
         Swal.fire({
             icon: 'warning',
             title: "Network connection trouble!",
@@ -123,18 +124,17 @@ function* postAdds(payload) {
     }
 
 }
-function* updateAddsDetail(payload){
-    const {id,vote,history} =payload
-    console.log('updatae adss')
-    console.log(vote)
-    // const{updateData:{brand,}}
+//edit
+function* updateAddsDetail(payload) {
+    const { id, vote, history } = payload
     const QUERY_PATH = `${PATH}/${id}`
-    const result= yield call(update, QUERY_PATH,{vote})
+
+    yield call(update, QUERY_PATH, { vote })
     try {
         yield put(actions.resetDetailAdds())
-       console.log(result)
     } catch (error) {
         console.log(error)
+
         Swal.fire({
             icon: 'warning',
             title: "Something went Wrong!",
@@ -143,10 +143,9 @@ function* updateAddsDetail(payload){
             buttons: true,
             dangerMode: true,
             timer: 1500
-        }).then(()=>history.push(`/detail/${id}`))
+        }).then(() => history.push(`/detail/${id}`))
     }
 }
-
 
 
 export default function* rootSaga() {
@@ -155,7 +154,7 @@ export default function* rootSaga() {
         takeEvery('LOAD_ADDS', loadAdds),
         takeEvery('ADD_NEW_ADDS', postAdds),
         takeEvery('LOAD_DETAIL_ADDS', loadAddsDetail),
-        takeEvery('UPDATE_VOTE',updateAddsDetail)
+        takeEvery('UPDATE_VOTE', updateAddsDetail)
     ]);
 }
 

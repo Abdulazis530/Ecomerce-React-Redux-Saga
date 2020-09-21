@@ -1,12 +1,8 @@
-
 import React, { Component } from 'react'
-import FlexItemProduct from '../components/ItemProduct'
+import ItemProduct from '../components/ItemProduct'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { connect } from 'react-redux'
 import { loadAdds,resetAdds } from '../actions'
-
-
-
 
 class BoxProducts extends Component {
     constructor(props) {
@@ -16,16 +12,12 @@ class BoxProducts extends Component {
             hasMore: true,
             limit: 3
         }
-
     }
     componentDidMount() {
-        console.log('didmount excuted')
-
         this.props.loadAdds(this.state.page, this.state.limit)
     }
 
     componentWillUnmount() {
-        console.log('unmount excuted')
         this.props.resetAdds();
     }
     fetchData = () => {
@@ -35,14 +27,14 @@ class BoxProducts extends Component {
                 () => {
                     this.props.loadAdds(this.state.page, this.state.limit)
                 })
-        } else if (this.state.page == this.props.totalPage) {
+        } else if (this.state.page === this.props.totalPage) {
             this.setState({ hasMore: false })
         }
     }
 
     render() {
         const adds = this.props.adds.map((item, index) => {
-            return <FlexItemProduct
+            return <ItemProduct
                 key={index}
                 id={item.id}
                 title={item.title}
